@@ -10,5 +10,30 @@
          branch.init('key_live_gqhyVYRYj3zcDE2jKrBcNaggxFj951GB'); // Change `key_live_YOUR_KEY_GOES_HERE` to match your Branch Dashboard
       </script>
    </head>
-   <body></body>
+<button id="purchase-button">Make a Purchase</button>
+   <script type="text/javascript">
+  document.getElementById('purchase-button').addEventListener('click', function() {
+    // Ensure Branch is ready
+    if (window.__branch && window.__branch._q) {
+      // Define the purchase event properties
+      var eventData = {
+        event: 'purchase',
+        metadata: {
+          // Add additional metadata as needed
+          item: 'Example Item',
+          amount: 100.00
+        }
+      };
+
+      // Trigger the Branch event
+      window.__branch._q.push(['track', eventData]);
+
+      console.log('Branch purchase event triggered.');
+    } else {
+      console.error('Branch SDK not loaded.');
+    }
+  });
+</script>
+
+   <body></body>  
 </html>
